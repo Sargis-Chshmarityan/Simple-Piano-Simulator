@@ -1,5 +1,5 @@
 #pragma once // WINDOW_HANDLER_HPP
-#include "AudioHandler.hpp"
+#include "audio_handler.hpp"
 #include "piano.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_audio.h>
