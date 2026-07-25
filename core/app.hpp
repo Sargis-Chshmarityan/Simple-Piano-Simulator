@@ -1,4 +1,4 @@
-#pragma once // WINDOW_HANDLER_HPP
+#pragma once // WINDOW_HANDLER_H2P
 #include "audio_handler.hpp"
 #include "piano.hpp"
 #include <SDL2/SDL.h>
@@ -34,25 +34,108 @@ public:
       SDL_Quit();
       return 1;
     }
-    Piano piano(0);
-    Note chord[3] = {piano.get_key(25), piano.get_key(28), piano.get_key(34)};
-    Chord c(chord, 3);
-    c.append_to_vector(handler.audio_data.active_notes);
+    Piano piano(2);
     running = true;
+    handler.ac.toggle();
 
     while (running) {
       while (SDL_PollEvent(&event)) {
+        int key_root = piano.get_octave() * 12;
         if (event.type == SDL_QUIT) {
           running = false;
         }
         if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
           switch (event.key.keysym.sym) {
-          case SDLK_SPACE:
-            handler.ac.toggle();
+          case SDLK_a:
+            handler.append_note(piano.get_key(key_root + 1));
+            break;
+          case SDLK_w:
+            handler.append_note(piano.get_key(key_root + 2));
+            break;
+          case SDLK_s:
+            handler.append_note(piano.get_key(key_root + 3));
+            break;
+          case SDLK_d:
+            handler.append_note(piano.get_key(key_root + 4));
+            break;
+          case SDLK_r:
+            handler.append_note(piano.get_key(key_root + 5));
+            break;
+          case SDLK_f:
+            handler.append_note(piano.get_key(key_root + 6));
+            break;
+          case SDLK_t:
+            handler.append_note(piano.get_key(key_root + 7));
+            break;
+          case SDLK_g:
+            handler.append_note(piano.get_key(key_root + 8));
+            break;
+          case SDLK_h:
+            handler.append_note(piano.get_key(key_root + 9));
+            break;
+          case SDLK_u:
+            handler.append_note(piano.get_key(key_root + 10));
+            break;
+          case SDLK_j:
+            handler.append_note(piano.get_key(key_root + 11));
+            break;
+          case SDLK_i:
+            handler.append_note(piano.get_key(key_root + 12));
             break;
           case SDLK_ESCAPE:
             std::cout << "Escape pressed, exitting the main loop\n";
             running = false;
+            break;
+          case SDLK_KP_PLUS:
+            piano.set_octave(piano.get_octave() + 1);
+            std::cout << "Increasing octave. Current: " << piano.get_octave()
+                      << std::endl;
+            break;
+          case SDLK_KP_MINUS:
+            piano.set_octave(piano.get_octave() - 1);
+            std::cout << "Decreasing octave. Current: " << piano.get_octave()
+                      << std::endl;
+
+            break;
+          }
+        }
+        if (event.type == SDL_KEYUP && event.key.repeat == 0) {
+          switch (event.key.keysym.sym) {
+          case SDLK_a:
+            handler.remove_note(key_root + 1);
+            break;
+          case SDLK_w:
+            handler.remove_note(key_root + 2);
+            break;
+          case SDLK_s:
+            handler.remove_note(key_root + 3);
+            break;
+          case SDLK_d:
+            handler.remove_note(key_root + 4);
+            break;
+          case SDLK_r:
+            handler.remove_note(key_root + 5);
+            break;
+          case SDLK_f:
+            handler.remove_note(key_root + 6);
+            break;
+          case SDLK_t:
+            handler.remove_note(key_root + 7);
+            break;
+          case SDLK_g:
+            handler.remove_note(key_root + 8);
+            break;
+          case SDLK_h:
+            handler.remove_note(key_root + 9);
+            break;
+          case SDLK_u:
+            handler.remove_note(key_root + 10);
+            break;
+          case SDLK_j:
+            handler.remove_note(key_root + 11);
+            break;
+          case SDLK_i:
+            handler.remove_note(key_root + 12);
             break;
           }
         }
