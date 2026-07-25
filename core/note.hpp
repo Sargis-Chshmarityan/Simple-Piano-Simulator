@@ -1,4 +1,4 @@
-#pragma once // NOTE_H
+#pragma once // NOTE_HPP
 
 #include <cmath>
 #include <iostream>
@@ -29,9 +29,14 @@ struct Note {
   NoteName name;
   freq_t frequency;
   double phase;
+  int index;
+  bool is_releasing = false;
+  double release_volume = 1.0;
+  double release_duration = 0.6;
+  double age = 0.0;
 
-  Note(NoteName name, freq_t frequency, double phase)
-      : name(name), frequency(frequency), phase(phase) {}
+  Note(NoteName name, freq_t frequency, double phase, int index)
+      : name(name), frequency(frequency), phase(phase), index(index) {}
 
   void play() const {
     std::cout << "Playing: " << name.to_string() << ". Frequency: " << frequency
@@ -40,6 +45,6 @@ struct Note {
 
   void print() const {
     std::cout << "Name: " << name.to_string() << ", Frequency: " << frequency
-              << std::endl;
+              << "Index: " << index << std::endl;
   }
 };
