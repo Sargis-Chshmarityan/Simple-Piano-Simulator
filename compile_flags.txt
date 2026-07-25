@@ -1,2 +1,3 @@
 -Icore
 -I.
+-std=c++20
