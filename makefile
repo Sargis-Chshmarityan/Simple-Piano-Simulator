@@ -5,7 +5,7 @@ export DEBUGGER = gdb
 export DEBUG_TARGET = debug
 export SRC = src/*.cpp
 export OBJ = bin/*.o
-export CFLAGS = -Wall -Wextra -Icore
+export CFLAGS = -std=c++20 -Wall -Wextra -Icore
 export LIBS = -lSDL2
 export NULL = /dev/null
 
