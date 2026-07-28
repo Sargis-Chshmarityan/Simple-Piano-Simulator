@@ -1,0 +1,2 @@
+Remove-Item: Cannot find path 'C:\Users\sargi\Documents\dev\piano_simulator\debug.exe' because it does not exist.
+make: *** [makefile:42: clean] Error 1
