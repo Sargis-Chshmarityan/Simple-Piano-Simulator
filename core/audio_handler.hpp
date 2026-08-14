@@ -130,7 +130,7 @@ public:
     wanted_spec.freq = 44100.0;
     wanted_spec.format = AUDIO_S16SYS;
     wanted_spec.channels = 1;
-    wanted_spec.samples = 256;
+    wanted_spec.samples = 128;
     wanted_spec.callback = audio_callback;
     wanted_spec.userdata = &audio_data;
 
